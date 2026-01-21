@@ -19,7 +19,9 @@ public class groundsensor : MonoBehaviour
         }
         if (collision.gameObject.layer == 7)
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            goomba _enemyScript = collision.gameObject.GetComponent<goomba>();
+            _enemyScript.GoombaDeath();
         }
     }
     void OnTriggerExit2D(Collider2D collision)
