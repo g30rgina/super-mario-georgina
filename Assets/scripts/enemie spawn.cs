@@ -1,22 +1,47 @@
 using UnityEngine;
-
+using System.Collections; 
 public class enemiespawn : MonoBehaviour
 {
-    public GameObject enemiesPrefab;
-    public Transform spawnPosition;
+    private BoxCollider2D _boxCollider;
+    public GameObject[] enemiesPrefab;
+    public Transform spawnPosition; 
+    public Transform spawnPosition2;
+    public Transform[] spawnPoints; 
+    public int enemiesToSpawn = 5; 
 
-
-
-
-    void SpawnEnemies()
+void Awake()
+{
+    _boxCollider = GetComponent<BoxCollider2D>();
+}
+    IEnumerator SpawnEnemy()
+    { 
+        foreach (Transform item in spawnPoints)
+        { 
+            Instantiate(enemiesPrefab[Random.Range(0, enemiesPrefab.Length)], item.position, Quaternion.identity);
+        }
+        yield return new WaitForSeconds (0.5f); 
+    }
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Instantiate(enemiesPrefab, spawnPosition.position, Quaternion.identity);
+        if(collision.gameObject.CompareTag("Player"))
+        { 
+            _boxCollider.enabled = false;
+            StartCoroutine(SpawnEnemy());
+        }
     }
 
-    void OntriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            SpawnEnemies();
-        }  
+
+
+
+
+    //{
+        //boxCollider=GetComponent(enemiesPrefab, spawnPosition.position, Quaternion.identity);
+    //}
+
+    //void OntriggerEnter2D(Collider2D collision)
+    //{
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+            //SpawnEnemies();
+        //}  
 }
