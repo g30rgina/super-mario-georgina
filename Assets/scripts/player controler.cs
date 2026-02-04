@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR.Haptics;
+
 
 public class playercontroler : MonoBehaviour
 {
@@ -41,6 +41,7 @@ public class playercontroler : MonoBehaviour
         transform.position = startPosition;
 
         moveAction = InputSystem.actions["Move"];
+        JumpAction = InputSystem.actions["Jump"];
 
         rBody2D.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
     }
