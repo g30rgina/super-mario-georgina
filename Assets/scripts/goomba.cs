@@ -18,6 +18,8 @@ public class goomba : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _gameManager = GameObject.Find("game manager").GetComponent<gamemanager>();
+        
+         _playerScript = GameObject.Find("Mario_0").GetComponent<PlayerControler>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,8 +52,10 @@ public class goomba : MonoBehaviour
     public void GoombaDeath()
 
     {
-        _gameManager.Addkill();
 
+     // _gameManager.Addkill();
+
+         _animator.SetBool("Goomba death", true);
         _audioSource.PlayOneShot(deathSFX);
 
         movementSpeed = 0;

@@ -11,7 +11,10 @@ public class moneda : MonoBehaviour
 
     void Awake()
     {
-        monedaAnimator = GetComponent<Animator>();
+
+        //monedaAnimator = GetComponent<Animator>();
+
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         rigidbodyMoneda = GetComponent<Rigidbody2D>();
 
@@ -24,7 +27,9 @@ public class moneda : MonoBehaviour
      {
        if (monedaCollisiom.gameObject.CompareTag("Player"))
         {
-            _audioSourceMoneda.PlayOneShot(monedaSonido);
+            renderSrite.enabled = false; 
+            _gameManager.Coins(); 
+            _audioSourceMoneda.PlayOneShot(monedaSonido); 
             Destroy(gameObject, 0.5f);
         } 
 
