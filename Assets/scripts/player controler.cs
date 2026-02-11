@@ -9,6 +9,7 @@ public class playercontroler : MonoBehaviour
 
     public float movementSpeed = 5f;
     public float jumpforce = 10; 
+    public float bounceForce
     public int direction = 1;
 
     public Vector3 intialPosition;
@@ -31,6 +32,12 @@ public class playercontroler : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         sensor = GetComponentInChildren<groundsensor>();
+
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>(); 
+
+        moveAction = InputSystem.actions["Move"]; 
+        JumpAction = InputSystem.actions["Jump"];
+        _pauseAction = InputSystem.actions["Pause"];
     }
 
     public
@@ -48,7 +55,8 @@ public class playercontroler : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        if(_gameManager._pause == true);
         moveDirection = moveAction.ReadValue<Vector2>();
         //transform.position = new Vector3(transform.position.x + direction * movementSpeed * Time.deltatime, transform.position.y, transform.position.z);
 
@@ -82,6 +90,9 @@ public class playercontroler : MonoBehaviour
             rBody2D.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         }
         animator.SetBool("IsJumping", sensor.isGrounded);
+
+        Bounce();
+
     }
             
 }

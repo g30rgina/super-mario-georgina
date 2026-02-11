@@ -9,7 +9,8 @@ public class groundsensor : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             isGrounded = true;
-        }
+        } 
+        if
     }
     void OntriggerEnter2D(Collider2D collision)
     {

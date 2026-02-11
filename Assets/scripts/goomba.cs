@@ -18,19 +18,25 @@ public class goomba : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _gameManager = GameObject.Find("game manager").GetComponent<gamemanager>();
-        
+        healthSlider = GetComponentInChildren<Slider>();
          _playerScript = GameObject.Find("Mario_0").GetComponent<PlayerControler>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _healthSlider.maxValue = _goombaHealth; 
+        _healthSlider.maxValue = _goombaHealth; 
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    } 
+      public void TakeDamage()
+    {
+        _goombaHealth 
+        healthSlider.Value = Goomba
     }
     void FixedUptade()
     {

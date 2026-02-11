@@ -1,23 +1,37 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class gamemanager : MonoBehaviour
-{
+public class gamemanager : MonoBehaviour 
+{ 
+    public GameObject pauseCanvas;
+    public Text goombaText;
+
+    private bool pause;
+
     public int killedEnemies = 0;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
     public void Addkill()
     {
         killedEnemies++;
-    }
+    goombaText.text = killedEnemies.ToString();
+    }  
+
+    void Pause () 
+    { 
+        if(_pause == false)
+        { 
+        Time.timeScale = 0; 
+        pause
+        _pause = true;
+        } 
+        else
+        {
+        Time.timeScale = 1;
+        _pause = false;
+        }
+}
 
 }
+
+
+
