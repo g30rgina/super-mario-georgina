@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class goomba : MonoBehaviour
 {
@@ -12,14 +13,17 @@ public class goomba : MonoBehaviour
 
     public float movementSpeed = 4;
     public int direction = 1;
+    private int _goombaHealth = 3;
+    private Slider _healthSlider;
+
     void Awake()
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _gameManager = GameObject.Find("game manager").GetComponent<gamemanager>();
-        healthSlider = GetComponentInChildren<Slider>();
-         _playerScript = GameObject.Find("Mario_0").GetComponent<PlayerControler>();
+        _healthSlider = GetComponentInChildren<Slider>();
+        // _playerScript = GameObject.Find("Mario_0").GetComponent<PlayerControler>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,15 +37,12 @@ public class goomba : MonoBehaviour
     {
         
     } 
-      public void TakeDamage()
-    {
-        _goombaHealth 
-        healthSlider.Value = Goomba
-    }
+
     void FixedUptade()
     {
         _rigidBody2D.linearVelocity = new Vector2(direction * movementSpeed, _rigidBody2D.linearVelocity.y);
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Tuberias") || collision.gameObject.layer == 7)
@@ -50,29 +51,45 @@ public class goomba : MonoBehaviour
             //direction = direction * -1;
             direction *= -1;
         }
+
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
         }
     }
-    public void GoombaDeath()
 
+      public void TakeDamage()
+    {
+        _goombaHealth--;
+        _healthSlider.value = _goombaHealth;
+
+        if(_goombaHealth <= 0)
+        { 
+            GoombaDeath();
+        }
+    }
+
+    public void GoombaDeath()
     {
 
-     // _gameManager.Addkill();
-
-         _animator.SetBool("Goomba death", true);
+        _gameManager.Addkill();
         _audioSource.PlayOneShot(deathSFX);
-
         movementSpeed = 0;
-
         _boxCollider.enabled = false;
+        Destroy(gameObject,1);
+    }
+}    
 
-        Destroy(gameObject, 1);
+         //_animator.SetBool("Goomba death", true);
+        //_audioSource.PlayOneShot(deathSFX);
+
+        //movementSpeed = 0;
+
+        //_boxCollider.enabled = false;
+
+        //Destroy(gameObject, 1);
       
         // _audioSource.clip = deathSFX;
         // _audioSource.Play(); 
 
 
-    }
-}

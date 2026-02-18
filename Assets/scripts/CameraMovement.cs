@@ -11,13 +11,14 @@ public class CameraMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void awake()
     {
+        //cameraTarget = GameObject.Find("Mario").GetComponent<Transform>();
         cameraTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cameraTarget = null)
+        if (cameraTarget != null)
         {
             Vector3 desiredPosition = cameraTarget.position + cameraOffset;
 
@@ -28,8 +29,5 @@ public class CameraMovement : MonoBehaviour
 
             transform.position = clampePosition;
         } 
-      
-
-
     }
 }

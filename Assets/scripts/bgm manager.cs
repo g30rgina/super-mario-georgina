@@ -14,7 +14,8 @@ public class bgmmanager : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        _audioSource.Play();
+       StartBGM();
+        //_audioSource.Play();
     }
     void StartBGM()
     {

@@ -7,14 +7,15 @@ public class moneda : MonoBehaviour
 
     private AudioSource _audioSourceMoneda;
     public AudioClip monedaSonido;
-
+    private gamemanager _gamemanager;
+    public SpriteRenderer _spriterender
 
     void Awake()
     {
 
         //monedaAnimator = GetComponent<Animator>();
 
-        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gamemanager = GameObject.Find("game manager").GetComponent<gamemanager>();
 
         rigidbodyMoneda = GetComponent<Rigidbody2D>();
 
@@ -23,12 +24,12 @@ public class moneda : MonoBehaviour
     } 
 
 
-    void OnCollisionEnter2D(Collision2D monedaCollisiom)
+    void OnCollisionEnter2D(Collision2D monedaCollision)
      {
-       if (monedaCollisiom.gameObject.CompareTag("Player"))
+       if (monedaCollision.gameObject.CompareTag("Player"))
         {
-            renderSrite.enabled = false; 
-            _gameManager.Coins(); 
+            render sprite enabled = false; 
+            _gamemanager.Coins(); 
             _audioSourceMoneda.PlayOneShot(monedaSonido); 
             Destroy(gameObject, 0.5f);
         } 

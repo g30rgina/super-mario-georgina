@@ -8,15 +8,22 @@ public class PrimerScript : MonoBehaviour
     private bool verdaderoFalso = false;
     private string cadenaTexto = "Hola";
     private char letra = 'a';
+
+    private int[] inArray = new int[5]{2, 9, 5, 4, 3};
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inArray[2] = 27;
+
         numeroEntero = 37;
 
         cadenaTexto = "Hola Mundo";
 
         Debug.Log(cadenaTexto + "aasfdafd");
         Debug.Log(numeroEntero);
+
+        Calculo();
     }
 
     public void Calculo()
@@ -41,3 +48,10 @@ public class PrimerScript : MonoBehaviour
         
     }
 }
+ // numeroEntero = 37;
+
+       // //  cadenaTexto = "Hola Mundo";
+
+      //   Debug.Log(cadenaTexto + "aasfdafd");
+      //   Debug.Log(numeroEntero);
+   // }
