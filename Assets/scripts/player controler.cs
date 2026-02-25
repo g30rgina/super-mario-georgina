@@ -52,7 +52,7 @@ public class playercontroler : MonoBehaviour
             _gameManager.Pause(); 
         }
 
-        if(_gameManager._Pause == true) 
+        if(_gameManager._pause = true) 
         { 
             return;  
         }

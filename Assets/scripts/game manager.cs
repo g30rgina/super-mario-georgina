@@ -6,7 +6,7 @@ public class gamemanager : MonoBehaviour
     public GameObject pauseCanvas;
     public Text goombaText;
 
-    private bool _pause;
+    public bool _pause;
 
     public int killedEnemies = 0;
     
